@@ -79,7 +79,7 @@ function Header() {
     /* Desktop Navigation */
   }
           <ul
-    className="hidden lg:flex items-center space-x-6"
+    className="hidden xl:flex items-center space-x-6"
     ref={dropdownRef}
   >
             <li>
@@ -568,7 +568,7 @@ function Header() {
     /* Mobile Menu Button */
   }
           <button
-    className="lg:hidden p-2"
+    className="xl:hidden p-2"
     onClick={() => setIsMenuOpen(!isMenuOpen)}
     aria-label="Toggle menu"
   >

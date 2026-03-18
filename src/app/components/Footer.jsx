@@ -11,9 +11,9 @@ import { Link } from "react-router";
 import logoImg from "../../assets/final-logo.png";
 function Footer() {
   const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
-  return <footer className="bg-foreground text-white">
+  return <footer className="bg-foreground text-white overflow-hidden">
       <div className="container mx-auto px-4 pt-12 pb-2">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
           {
     /* Company Info */
   }
@@ -22,10 +22,10 @@ function Footer() {
               <img
     src={logoImg}
     alt="Career Hub Technology"
-    className="w-14 h-14 rounded-full object-cover"
+    className="w-14 h-14 rounded-full object-cover flex-shrink-0"
   />
               <span
-    className="text-2xl uppercase"
+    className="text-xl sm:text-2xl uppercase break-words"
     style={{ fontFamily: "'Baloo 2', cursive" }}
   >
                 Career Hub Technology
