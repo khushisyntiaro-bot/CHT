@@ -123,9 +123,9 @@ function Testimonials() {
   }
           <button
     onClick={() => scroll("left")}
-    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-[#FF6600]/80 transition-colors"
+    className="absolute -left-12 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
   >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-8 h-8" />
           </button>
 
           {
@@ -133,9 +133,9 @@ function Testimonials() {
   }
           <button
     onClick={() => scroll("right")}
-    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-[#FF6600]/80 transition-colors"
+    className="absolute -right-12 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
   >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-8 h-8" />
           </button>
 
           <div

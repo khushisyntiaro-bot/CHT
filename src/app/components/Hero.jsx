@@ -112,13 +112,13 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-4">
             <button
     onClick={scrollToContact}
-    className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-green-600 active:bg-green-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-bold"
+    className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 hover:border-green-600 hover:text-green-400 active:border-green-600 active:text-green-400 transition-all border-2 border-white/30 flex items-center justify-center gap-2 font-bold"
   >
               Get Free Consultation <ArrowRight className="w-5 h-5" />
             </button>
             <button
     onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-    className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-all border border-white/30 flex items-center justify-center gap-2 font-bold"
+    className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-all border-2 border-white/30 flex items-center justify-center gap-2 font-bold"
   >
               Explore Services
             </button>
