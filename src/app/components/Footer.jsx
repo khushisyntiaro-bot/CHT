@@ -13,7 +13,7 @@ function Footer() {
   const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
   return <footer className="bg-foreground text-white overflow-hidden">
       <div className="container mx-auto px-4 pt-12 pb-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8 mb-8">
           {
     /* Company Info */
   }
@@ -280,7 +280,7 @@ function Footer() {
     href="https://www.syntiaro.com/"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-orange-500 hover:text-teal-400 active:text-teal-400 transition-colors ml-1"
+    className="text-teal-400 hover:text-teal-300 active:text-teal-300 transition-colors ml-1"
   >
                 SYNTIARO
               </a>

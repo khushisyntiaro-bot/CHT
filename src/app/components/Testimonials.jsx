@@ -118,26 +118,6 @@ function Testimonials() {
     /* Carousel with buttons */
   }
         <div className="relative">
-          {
-    /* Left Button */
-  }
-          <button
-    onClick={() => scroll("left")}
-    className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-  >
-            <ChevronLeft className="w-8 h-8" />
-          </button>
-
-          {
-    /* Right Button */
-  }
-          <button
-    onClick={() => scroll("right")}
-    className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-  >
-            <ChevronRight className="w-8 h-8" />
-          </button>
-
           <div
     ref={scrollRef}
     className="flex gap-6 overflow-x-hidden pb-6"

@@ -12,7 +12,10 @@ import { useState } from "react";
 import contactUsBanner from "../../assets/contact.jpg";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 function Contact() {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+  const apiBaseUrl =
+    import.meta.env.PROD && import.meta.env.VITE_API_BASE_URL
+      ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, "")
+      : "";
   const [formData, setFormData] = useState({
     name: "",
     phone: "",

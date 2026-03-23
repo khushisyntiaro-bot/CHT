@@ -3,10 +3,10 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import herosec3Img from "../../assets/herosec3.jpg";
 import herosec5Img from "../../assets/herosec5.webp";
-import palm2Img from "../../assets/palm2.webp";
+import palmisland2Img from "../../assets/palmisland2.png";
 function Hero() {
   const [currentImage, setCurrentImage] = useState(0);
-  const images = [herosec3Img, herosec5Img, palm2Img];
+  const images = [herosec3Img, herosec5Img, palmisland2Img];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +44,7 @@ function Hero() {
         {
     /* Dark Overlay */
   }
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/40 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/40" />
         
         {
     /* Navigation Dots */

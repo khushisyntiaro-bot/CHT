@@ -11,7 +11,10 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 function Franchise() {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+  const apiBaseUrl =
+    import.meta.env.PROD && import.meta.env.VITE_API_BASE_URL
+      ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, "")
+      : "";
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

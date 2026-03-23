@@ -12,6 +12,9 @@
   ## Form email (Contact + Franchise)
 
   1) Create a `.env` file (see `.env.example`) and set `SMTP_USER` / `SMTP_PASS`.
-  2) In one terminal run `npm run server` (starts on `http://localhost:3001`).
-  3) In another terminal run `npm run dev`.
+  2) Start both servers together with `npm run dev:full` (recommended).
+
+  Or run them separately:
+  - `npm run server` (starts on `http://localhost:3001`)
+  - `npm run dev` (the Vite dev server proxies `/api` to the backend)
   

@@ -6,11 +6,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
+
+dotenv.config({ path: path.join(projectRoot, ".env") });
 
 function requiredEnv(name) {
   const value = process.env[name];
@@ -21,6 +21,12 @@ function requiredEnv(name) {
 const smtpUser = requiredEnv("SMTP_USER");
 const smtpPass = requiredEnv("SMTP_PASS");
 const mailTo = process.env.MAIL_TO || "careerhubtechnologypimpri@gmail.com";
+
+console.log("Initializing nodemailer with SMTP:", {
+  host: process.env.SMTP_HOST || "smtp.gmail.com",
+  port: Number(process.env.SMTP_PORT || 465),
+  user: smtpUser
+});
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.gmail.com",
@@ -77,8 +83,28 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json({ limit: "1mb" }));
 
+// Add headers to allow API connections
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; script-src 'self'; style-src 'self' 'unsafe-inline'");
+  next();
+});
+
+// Chrome DevTools sometimes probes this path on local dev servers.
+app.get("/.well-known/appspecific/com.chrome.devtools.json", (_req, res) => {
+  res.status(204).end();
+});
+
 app.get("/health", (_req, res) => {
   res.json({ ok: true });
+});
+
+app.get("/api/verify", async (_req, res) => {
+  try {
+    await transporter.verify();
+    res.json({ ok: true, message: "Mail server connection verified" });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message || "Failed to verify mail server" });
+  }
 });
 
 app.post("/api/contact", async (req, res) => {
@@ -89,7 +115,7 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const attachment = await resolveOptionalAttachment();
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: smtpUser,
       to: mailTo,
       subject: `Contact Enquiry: ${name}`,
@@ -105,10 +131,10 @@ app.post("/api/contact", async (req, res) => {
       attachments: attachment ? [attachment] : []
     });
 
-    res.json({ ok: true });
+    res.json({ ok: true, messageId: info.messageId });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ ok: false, error: "Failed to send email" });
+    console.error("Error in /api/contact:", err.message, err.stack);
+    res.status(500).json({ ok: false, error: err.message || "Failed to send email" });
   }
 });
 
@@ -131,7 +157,7 @@ app.post("/api/franchise", async (req, res) => {
     }
 
     const attachment = await resolveOptionalAttachment();
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: smtpUser,
       to: mailTo,
       subject: `Franchise Application: ${firstName} ${lastName}`,
@@ -151,10 +177,10 @@ app.post("/api/franchise", async (req, res) => {
       attachments: attachment ? [attachment] : []
     });
 
-    res.json({ ok: true });
+    res.json({ ok: true, messageId: info.messageId });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ ok: false, error: "Failed to send email" });
+    console.error("Error in /api/franchise:", err.message, err);
+    res.status(500).json({ ok: false, error: err.message || "Failed to send email" });
   }
 });
 
@@ -162,4 +188,3 @@ const port = Number(process.env.PORT || 3001);
 app.listen(port, () => {
   console.log(`Mail server listening on http://localhost:${port}`);
 });
-
